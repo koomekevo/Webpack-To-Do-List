@@ -1,6 +1,6 @@
 export default class ToDo {
     static list = [];
-  
+
     constructor(description, complete = false) {
       this.description = description;
       this.complete = complete;
@@ -8,7 +8,7 @@ export default class ToDo {
       ToDo.list.push(this);
       this.getList = () => ToDo.list;
     }
-  
+
     update() {
       if (this.complete) {
         this.complete = false;
@@ -16,4 +16,4 @@ export default class ToDo {
         this.complete = true;
       }
     }
-  }
+}
