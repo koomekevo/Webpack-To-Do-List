@@ -3,11 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: ['./src/index.js', './src/todoList.js'],
+  entry: ['./src/index.js', './src/todoList.js', './src/crud.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    publicPath: '/Webpack-To-Do-List/',
   },
   devServer: {
     static: './dist',
@@ -22,6 +23,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.png$/i,
+        type: 'asset/resource',
       },
     ],
   },

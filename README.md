@@ -4,6 +4,12 @@
 
 > This is a to do list project built with Webpack.
 
+![screenshot](./app_screenshot.png)
+
+## Live Demo
+
+https://koomekevo.github.io/Webpack-To-Do-List/
+
 ## Built With
 
 - HTML
