@@ -8,4 +8,9 @@ describe('Tests for todo list app', () => {
     const storage = JSON.parse(localStorage.getItem('todoList'));
     expect(storage).toHaveLength(2);
   });
+  test('Should remove an item from the list', () => {
+    remove(0);
+    const storage = JSON.parse(localStorage.getItem('todoList'));
+    expect(storage).toHaveLength(1);
+  });
 });
