@@ -1,6 +1,6 @@
 export default class ToDo {
     static list = [];
-  
+
     constructor(description, complete = false) {
       this.description = 'description';
       this.complete = complete;

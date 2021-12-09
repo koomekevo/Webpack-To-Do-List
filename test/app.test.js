@@ -1,6 +1,6 @@
-import { add, remove, } from '../src/crud';
+import { add, remove } from '../src/crud';
 
-//Add tests
+// Add tests
 describe('Tests for todo list app', () => {
   test('should add item to the list', () => {
     add('First item');
