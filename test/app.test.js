@@ -29,5 +29,12 @@ describe('Tests for todo list app', () => {
     const storage = JSON.parse(localStorage.getItem('todoList'));
     expect(storage[0].description).toBe('edited text');
   });
+
+  test('Delete all completed', () => {
+    deleteAllCompleted(ToDo);
+    ToDo.list.forEach((item) => {
+      expect(item.complete).toBeFalsy();
+    });
+  });
   
 });
