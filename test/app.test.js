@@ -24,6 +24,10 @@ describe('Tests for todo list app', () => {
     expect(newItem.complete).toBeTruthy();
   });
 
-  
+  test('Edit item', () => {
+    edit(0, 'edited text');
+    const storage = JSON.parse(localStorage.getItem('todoList'));
+    expect(storage[0].description).toBe('edited text');
+  });
   
 });
