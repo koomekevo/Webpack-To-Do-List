@@ -36,5 +36,4 @@ describe('Tests for todo list app', () => {
       expect(item.complete).toBeFalsy();
     });
   });
-  
 });
