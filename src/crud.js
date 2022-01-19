@@ -1,6 +1,29 @@
 import ToDo from './todoList';
 import DeleteButton from './delete-btn.png';
 
+// Add functionality
+export function add(value) {
+  // Create new item
+  const newItem = new ToDo(value);
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
+}
+
+// Remove Functionality
+export function remove(index) {
+  ToDo.list = ToDo.list.filter((item) => item !== ToDo.list[index]);
+  // Update indexes
+  ToDo.list.forEach((item, i) => { item.index = i; });
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+}
+
+export function edit(index, text) {
+  ToDo.list[index].description = text;
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+}
+
 // Add items to UI
 export function populateList() {
   const todoList = document.getElementById('todo-list');
@@ -46,10 +69,7 @@ export function populateList() {
 
       // Update list
       const index = parseInt(listItem.id, 10);
-      ToDo.list[index].description = text.innerHTML;
-
-      // Update local storage
-      localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+      edit(index, text.innerHTML);
 
       if (e.code === 'Enter') {
         // Update UI
@@ -62,11 +82,8 @@ export function populateList() {
     deleteButton.addEventListener('click', () => {
       // Update list
       const index = parseInt(listItem.id, 10);
-      ToDo.list = ToDo.list.filter((item) => item !== ToDo.list[index]);
-      // Update indexes
-      ToDo.list.forEach((item, i) => { item.index = i; });
-      // Update local storage
-      localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+      // Delete item
+      remove(index);
       // Update UI
       populateList();
     });
@@ -78,29 +95,12 @@ export function populateList() {
   });
 }
 
-// Add functionality
-export function add(e) {
-  if (e.code === 'Enter') {
-    // Create new item
-    const newItem = new ToDo(this.value, false);
-
-    // Update local storage
-    localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
-
-    // Update UI
-    this.value = '';
-    populateList();
-  }
-}
-
 // Clear completed functionality
-export function deleteAllCompleted() {
+export function deleteAllCompleted(todo) {
   // Update list
-  ToDo.list = ToDo.list.filter((item) => item.complete === false);
+  todo.list = todo.list.filter((item) => item.complete === false);
   // Update indexes
-  ToDo.list.forEach((item, i) => { item.index = i; });
+  todo.list.forEach((item, i) => { item.index = i; });
   // Update local storage
-  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
-  // Update UI
-  populateList();
+  localStorage.setItem('todoList', JSON.stringify(todo.list));
 }
